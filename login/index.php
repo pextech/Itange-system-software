@@ -83,19 +83,19 @@ $query=mysqli_query($conn,"SELECT * FROM employee  where username='$user' and pa
 if($role=="3")
 {	
 $admin="has logged in the system at ";  
-   mysqli_query($conn,"INSERT INTO history_log(user_id,action) VALUES('$branch_name','$admin')")or die(mysqli_error($conn));
+  //  mysqli_query($conn,"INSERT INTO history_log(user_id,action) VALUES('$branch_name','$admin')")or die(mysqli_error($conn));
 
 echo "<script type='text/javascript'>document.location='../dashboard/'</script>";
 }
   elseif ($role=="1") {
-    $cashier="has logged in the system at ";  
-   mysqli_query($conn,"INSERT INTO history_log(user_id,action) VALUES('$branch_name','$cashier')")or die(mysqli_error($conn));
+    // $cashier="has logged in the system at ";  
+  //  mysqli_query($conn,"INSERT INTO history_log(user_id,action) VALUES('$branch_name','$cashier')")or die(mysqli_error($conn));
 
     echo "<script type='text/javascript'>document.location='../dashboard/'</script>";
 }
 elseif ($role=="2") {
-    $product="has logged in the system at ";  
-   mysqli_query($conn,"INSERT INTO history_log(user_id,action) VALUES('$branch_name','$product')")or die(mysqli_error($conn));
+    // $product="has logged in the system at ";  
+  //  mysqli_query($conn,"INSERT INTO history_log(user_id,action) VALUES('$branch_name','$product')")or die(mysqli_error($conn));
 
     echo "<script type='text/javascript'>document.location='../dashboard/'</script>";
 }

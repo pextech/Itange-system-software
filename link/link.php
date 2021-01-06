@@ -65,7 +65,7 @@ h1 , p , h2{
                 </div>
             </li>
 
-            <li class="active open"><a href="../Dashboard"><i class="zmdi zmdi-home"></i><span>Dashboard</span></a></li>
+            <li class="active open"><a href="../dashboard"><i class="zmdi zmdi-home"></i><span>Dashboard</span></a></li>
 
             <?php
 include('../dist/includes/modals.php');
