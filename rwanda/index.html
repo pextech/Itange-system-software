@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        margin: 0px;
+        padding: 0px;
+        background-color: black;
+        min-height: 100vh;
+        color: #ddd;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        max-width: 100%;
+      }
+      form {
+        max-width: 100%;
+        flex-direction: column;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      form * {
+        display: block;
+        width: 100%;
+        min-width: 200px;
+      }
+    </style>
+  </head>
+  <body>
+  
+    <form>
+      <label>Province:</label>
+      <select id="province">
+        <option value="">...</option>
+      </select>
+      <label>District:</label>
+      <select id="district"> </select>
+      <label>Sector:</label>
+      <select id="sector"> </select>
+      <label>Cell:</label>
+      <select id="cell"> </select>
+      <label>village</label>
+      <select id="village"> </select>
+    </form>
+    
+
+<script src="jquery.min.js">  </script>
+
+    <script type="text/javascript">
+      const optionFormatter = function (items) {
+        var options = "";
+        items.forEach((item) => {
+          options += "<option>";
+          options += item;
+          options += "</option>";
+        });
+        return options;
+      };
+      var dataRwanda;
+      $(function () {
+       $.ajax({
+          dataType: "json",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "*",
+          },
+          url: "Rwanda/provinces_cells.json",
+          success: function (data) {
+            console.log("Connected");
+            dataRwanda = data;
+            console.log(dataRwanda);
+        var province = $("#province");
+        var district = $("#district");
+        var sector = $("#sector");
+        var cell = $("#cell");
+        var village = $("#village");
+        province.append(optionFormatter(Object.keys(dataRwanda)));
+        province.click(function () {
+          district.html(
+            optionFormatter(Object.keys(dataRwanda[province.val()]))
+          );
+        });
+        district.click(function () {
+          sector.html(
+            optionFormatter(
+              Object.keys(dataRwanda[province.val()][district.val()])
+            )
+          );
+        });
+        sector.click(function () {
+          cell.html(
+            optionFormatter(
+              Object.keys(
+                dataRwanda[province.val()][district.val()][sector.val()]
+              )
+            )
+          );
+        });
+        cell.click(function () {
+          village.html(
+            optionFormatter(
+              dataRwanda[province.val()][district.val()][sector.val()][
+                cell.val()
+              ]
+            )
+          );
+        });
+          },
+        });
+        
+      });
+    </script>
+  </body>
+</html>
